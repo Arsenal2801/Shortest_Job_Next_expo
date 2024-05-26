@@ -42,3 +42,39 @@ Aquí hay una descripción básica de cómo funciona el algoritmo SJN:
 El algoritmo SJN es eficiente en términos de minimizar el tiempo promedio de espera de los procesos en la cola, ya que siempre selecciona el proceso más corto en cada paso. Sin embargo, puede sufrir de inanición si procesos cortos continúan llegando y nunca permiten que los procesos más largos se ejecuten.
 
 En la práctica, la implementación real del algoritmo SJN puede requerir consideraciones adicionales, como la predicción precisa del tiempo de CPU de cada proceso y cómo manejar situaciones donde dos procesos tienen la misma ráfaga de CPU más corta.
+
+
+
+## Notas expo:
+### Introducción:
+
+El algoritmo SPN (Shortest Process Next) es un algoritmo de planificación de procesos no preventivo que selecciona para su ejecución el proceso de la cola de listos con el menor tiempo de ráfaga restante. El objetivo de este algoritmo es minimizar el tiempo promedio de espera y el tiempo promedio de respuesta de los procesos.
+
+### Ventajas:
+
+Menor tiempo promedio de espera: SPN tiende a minimizar el tiempo promedio de espera de los procesos, ya que los procesos cortos se ejecutan antes que los largos.
+Menor tiempo promedio de respuesta: SPN también tiende a minimizar el tiempo promedio de respuesta de los procesos, ya que los procesos reciben CPU lo antes posible.
+Simpleza: El algoritmo SPN es relativamente simple de implementar.
+
+### Desventajas:
+
+No es preventivo: SPN no es un algoritmo preventivo, lo que significa que no puede interrumpir la ejecución de un proceso para ejecutar otro proceso con mayor prioridad. Esto puede dar lugar a que los procesos largos monopolicen la CPU y perjudiquen a los procesos cortos.
+Requiere conocimiento previo del tiempo de ráfaga: Para que SPN funcione de manera eficiente, es necesario conocer el tiempo de ráfaga de cada proceso antes de que llegue al sistema. Esto puede ser difícil o imposible de obtener en algunos casos.
+Ineficiente para ráfagas bursty: SPN puede ser ineficiente para procesos con ráfagas bursty, es decir, procesos que alternan entre períodos de uso intensivo de CPU y períodos de inactividad. Esto se debe a que el algoritmo puede seleccionar un proceso corto para su ejecución, pero este proceso puede tener una ráfaga larga, lo que retrasa la ejecución de otros procesos.
+
+### Consideraciones de diseño para la implementación de SPN:
+
+Elección de la estructura de datos para la cola de listos: La elección de la estructura de datos adecuada para la cola de listos es crucial para la eficiencia del algoritmo SPN. Una cola de prioridad o una lista ordenada son opciones comunes, ya que permiten acceder rápidamente al proceso con el menor tiempo de ráfaga restante.
+Manejo de interrupciones: Si se implementa SPN en un sistema operativo que admite interrupciones, es necesario definir cómo se manejarán las interrupciones durante la ejecución de un proceso. Una opción es reubicar el proceso interrumpido al final de la cola de listos, mientras que otra opción es darle prioridad a la ejecución del proceso interrumpido.
+Estimación del tiempo de ráfaga: Si no es posible conocer el tiempo de ráfaga exacto de un proceso antes de su llegada, se pueden utilizar técnicas de estimación para obtener una aproximación. Existen diferentes técnicas de estimación, como la estimación basada en el historial del proceso o la estimación basada en el tipo de proceso.
+Manejo de procesos de larga duración: Para evitar que los procesos de larga duración monopolicen la CPU, se pueden implementar mecanismos como el envejecimiento o la multiprogramación con prioridades. El envejecimiento aumenta la prioridad de los procesos que han estado esperando en la cola de listos durante un tiempo prolongado, mientras que la multiprogramación con prioridades permite ejecutar simultáneamente varios procesos con diferentes prioridades.
+
+### Conclusión:
+
+El algoritmo SPN es una opción viable para la planificación de procesos en sistemas donde el objetivo principal es minimizar el tiempo promedio de espera y el tiempo promedio de respuesta. Sin embargo, es importante considerar las limitaciones del algoritmo y tomar las medidas adecuadas para mitigarlas al momento de implementarlo.
+
+### Recursos adicionales:
+
+https://en.wikipedia.org/wiki/Shortest_job_next
+https://www.geeksforgeeks.org/cpu-scheduling-in-operating-systems/
+https://www.tutorialspoint.com/operating_system/pdf/os_process_scheduling_algor
